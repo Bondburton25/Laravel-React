@@ -29,8 +29,13 @@ class InstallationStepInspectionSeeder extends Seeder
             // ['installation_step_id' => 2, 'name' => 'ถ้าใช้รุ่นที่เป็นปั๊มระยะชู้ตไม่เกิน 30 ซม. ความห่างช่วงเริ่มต้นไม่เกิน 10 ซม.', 'image' => null, 'description' => null],
             // ['installation_step_id' => 2, 'name' => 'หุ้มฉวนและติดเทปที่ฉนวนเรียบร้อยไม่มีรอยขาดหรือรอยตอทที่ยังไม่ได้ปิดฉนวน', 'image' => null, 'description' => null],
             // ['installation_step_id' => 3, 'name' => 'เข้าสายถูกต้องและใช้หางปลา', 'image' => null, 'description' => null],
-            ['installation_step_id' => 4, 'name' => 'ตำแหน่งถูกต้องตามแบบ', 'image' => null, 'description' => null],
-            ['installation_step_id' => 4, 'name' => 'ซัพพอร์ตคอยล์ร้อนมีหรือไม่  ', 'image' => null, 'description' => null]
+            // ['installation_step_id' => 4, 'name' => 'ตำแหน่งถูกต้องตามแบบ', 'image' => null, 'description' => null],
+            // ['installation_step_id' => 4, 'name' => 'ซัพพอร์ตคอยล์ร้อนมีหรือไม่  ', 'image' => null, 'description' => null],
+            ['installation_step_id' => 5, 'name' => 'ไฟที่เดินเข้าต่อถูกเฟสไหม', 'image' => null, 'description' => null],
+            ['installation_step_id' => 5, 'name' => 'เข้าสายถูกต้องและใช้หางปลา', 'image' => null, 'description' => null],
+            ['installation_step_id' => 5, 'name' => 'การเก็บสายด้วยท่อร้อยสายมีหรือไม่', 'image' => null, 'description' => null],
+            ['installation_step_id' => 5, 'name' => 'รางครอบท่อภายนอกเดินแล้วหรือไม่', 'image' => null, 'description' => null],
+            ['installation_step_id' => 5, 'name' => 'การเจาะผนังเก็บงานแล้วหรือไม่', 'image' => null, 'description' => null]
         ];
         DB::table('installation_step_inspections')->insert($installation_step_inspections);
     }

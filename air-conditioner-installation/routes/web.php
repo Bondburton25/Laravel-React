@@ -12,11 +12,24 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-use App\Http\Controllers\InstallationStepController;
-
+use App\Http\Controllers\{
+    InstallationController,
+    InstallationStepController,
+    ProjectController
+};
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/installation-steps', [InstallationStepController::class, 'index'])->name('installation-steps');
+
+
+Route::controller(ProjectController::class)->group(function () {
+    Route::resource('/projects', ProjectController::class)->only(['create', 'store']);
+});
+
+Route::controller(InstallationController::class)->group(function () {
+    Route::resource('/installations', InstallationController::class)->only(['create']);
+});
+
