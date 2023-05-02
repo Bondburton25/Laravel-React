@@ -10,8 +10,6 @@ class InstallationController extends Controller
 {
     public function create()
     {
-        return view('installation.create', [
-            'projects' => Project::get()
-        ]);
+        return view('installation.create', ['projects' => Project::get()]);
     }
 }

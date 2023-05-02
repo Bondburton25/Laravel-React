@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>สร้าง Project</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    
   </head>
   <body class="py-5">
     <!-- Start Container -->
@@ -24,7 +23,6 @@
       <div class="row">
         <form enctype="multipart/form-data" action="{{ route('projects.store') }}" method="POST" class="form">
         {{ csrf_field() }}
-
         <div class="form-group mb-4">
             <label for="name" class="form-label">ชื่อโครงการ <span class="text-danger">*</span></label>
             <input class="form-control" placeholder="ชื่อโครงการ" id="name" name="name" required></textarea>
@@ -57,23 +55,23 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <!-- Integrating the LIFF SDK -->
-    <script src="https://static.line-scdn.net/liff/edge/versions/2.15.0/sdk.js"></script>
+    {{-- <script src="https://static.line-scdn.net/liff/edge/versions/2.15.0/sdk.js"></script> --}}
 
     <script type="text/javascript">
-        function runApp() {
-            liff.getProfile().then(profile => {
-                document.getElementById("lineUserid").value = profile.userId;            
-            }).catch(err => console.error(err));
-        }
+        // function runApp() {
+        //     liff.getProfile().then(profile => {
+        //         document.getElementById("lineUserid").value = profile.userId;            
+        //     }).catch(err => console.error(err));
+        // }
         // JS Team 1660808375-1oORkKr8
         // JS service 1657806485-ZVqlPEzx
-        liff.init({ liffId: "1660808375-1oORkKr8" }, () => {
-            if (liff.isLoggedIn()) {
-                runApp();
-            } else {
-                liff.login();
-            }
-        }, err => console.error(err.code, error.message));
+        // liff.init({ liffId: "1660808375-1oORkKr8" }, () => {
+        //     if (liff.isLoggedIn()) {
+        //         runApp();
+        //     } else {
+        //         liff.login();
+        //     }
+        // }, err => console.error(err.code, error.message));
       // Initialize LIFF
     //   liff
     //     .init({ liffId: "<LIFF ID>" })

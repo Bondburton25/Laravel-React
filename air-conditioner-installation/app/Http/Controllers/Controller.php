@@ -48,16 +48,39 @@ class Controller extends BaseController
         return $datasReturn;
 	}
 
-  public function putMessageLine($line_msg, $type)
-    {
-        $ch = curl_init('https://api.line.me/v2/bot/message/'.$type);
-        $autorization = "Authorization: Bearer m21u5Ow6tzDUH3F50Sam9Tu1EAryLpgwReJ3nSs8p+uvuq2nfcatDfPgHegDnUcJiI9TFkk3pGniYnwO1yx7raWVwdzo/gHZPlJRR4DGo1kIIJaRT/g1MYZWU2oHD27chJWV7HJ2ek6ZlIGGbqyShAdB04t89/1O/w1cDnyilFU=";
-        $payload = json_encode($line_msg);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', $autorization));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        # send request
-        $result = curl_exec($ch);
-        curl_close($ch);
+  public function putMessageLine($line_msg,$type)
+  {
+    $ch = curl_init('https://api.line.me/v2/bot/message/'.$type);
+    $autorization = "Authorization: Bearer ByTKEIyJO23pj4r+fnfflgxOA5OTWfkOYzs0yz0ez9S/bBdObGLoiNj8qJPY3fDkiI9TFkk3pGniYnwO1yx7raWVwdzo/gHZPlJRR4DGo1n6GtS1/xZkG2ehv5or93xLVsDfo/VFS/g7mZXtlLpOYQdB04t89/1O/w1cDnyilFU=";
+    $payload = json_encode($line_msg);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', $autorization));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    # send request
+    $result = curl_exec($ch);
+    curl_close($ch);
+  }
+
+  function sendLineNotify($messageToNotify)
+  {
+    $token = "joRhIBj8DX1uakbYqxZvKY85NY3MwxcqV4DD3H9Iwap";
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "message=" . $messageToNotify);
+    $headers = array('Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer ' . $token . '',);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $result = curl_exec($ch);
+    if (curl_error($ch)) {
+        echo 'error:' . curl_error($ch);
+    } else {
+        $res = json_decode($result, true);
+        echo "status : " . $res['status'];
+        echo "message : " . $res['message'];
     }
+    curl_close($ch);
+  }
 }

@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Project;    
+use App\Models\Project;
+use Auth;
 
 class ProjectController extends Controller
 {
+  public function index()
+  {
+    return view('project.index', ['projects' => project::all()]);
+  }
+
     public function create()
     {
         return view('project.create');
@@ -170,10 +176,13 @@ class ProjectController extends Controller
         // Reply message
         $message["type"] = "text";
         $message["text"] = "คุณได้สร้างโครงการใหม่ชื่อ $project->name";
-        $line_msg["messages"][0] = $message;
-        $line_msg["to"] = $request->lineUserid;
-        $this->putMessageLine($line_msg,'push');
+        $lineMessage["messages"][0] = $message;
+        $lineMessage['to'] = Auth::user()->auth_provider->provider_id;
+        $this->putMessageLine($lineMessage,'push');
 
+        // Sending Line Notify
+        $messageToNotify = Auth::user()->name .' '.__('ได้สร้าง Project') .' '.$project->name.'';
+        $this->sendLineNotify($messageToNotify);
         return redirect()->back()->with('success', 'Project was created');
     }
 }

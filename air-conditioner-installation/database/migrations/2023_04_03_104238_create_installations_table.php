@@ -14,14 +14,16 @@ return new class extends Migration
         Schema::create('installations', function (Blueprint $table) {
             $table->id();
             $table->string('serial_number')->nullable();
-            $table->string('technician')->nullable();
+            $table->unsignedBigInteger('technician_id');
+            $table->foreign('technician_id')->references('id')->on('users');
             $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
             $table->string('building')->nullable();
             $table->integer('floor')->nullable();
             $table->string('room')->nullable();
+            $table->string('position')->nullable();
             $table->string('image')->nullable();
-            $table->enum('type', ['split_type', 'vrv']);
+            $table->enum('type', ['split', 'vrv']);
             $table->timestamps();
         });
     }
